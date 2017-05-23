@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import Homepage from './Homepage';
 import DevelopmentForm from './DevelopmentForm';
 import ThankYouForm from './ThankYouForm';
-import './../App.css';
+
+import Timeline from './Timeline';
 
 class App extends Component {
   constructor(props) {
@@ -53,6 +54,9 @@ class App extends Component {
               />
             )}
           />
+
+          <Route exact path="/timeline" component={Timeline} />
+
         </div>
       </Router>
     );
