@@ -6,7 +6,7 @@ const Homepage = props => {
   return (
     <HomeContainer>
       <HomeLink to="/mentor">Mentor</HomeLink>
-      <HomeLink to="/mentee">Young Person</HomeLink>
+      <HomeLink to="/timeline">Young Person</HomeLink>
     </HomeContainer>
   );
 };
