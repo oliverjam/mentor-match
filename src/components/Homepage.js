@@ -4,7 +4,7 @@ import { HomeContainer, HomeLink } from './base/Home';
 const Homepage = props => {
   return (
     <HomeContainer>
-      <HomeLink to="/mentor">Mentor</HomeLink>
+      <HomeLink to="/timeline">Mentor</HomeLink>
       <HomeLink to="/developmentForm">Young Person</HomeLink>
     </HomeContainer>
   );
