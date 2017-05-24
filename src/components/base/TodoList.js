@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { buttonStyle } from './utils/button';
 
 export const Todos = styled.ul`
   list-style-type: none;
