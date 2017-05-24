@@ -26,6 +26,7 @@ class App extends Component {
             {
               id: i + 1,
               text: `Todo ${i + 1}`,
+              checked: false,
             },
           ],
         };
@@ -34,6 +35,7 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
+    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
   }
 
   handleFormSubmit = ev => {
@@ -53,7 +55,7 @@ class App extends Component {
     const newSteps = [...this.state.steps];
     newSteps[id].todos = [
       ...this.state.steps[id].todos,
-      { id: Date.now(), text: this.state.todoInputValue },
+      { id: Date.now(), text: this.state.todoInputValue, checked: false },
     ];
     this.setState({ todoInputValue: '', steps: newSteps });
     // Doesn't work? :(
@@ -73,6 +75,16 @@ class App extends Component {
       return todos.id !== todoId;
     });
     this.setState({ steps: deletedItemList });
+  }
+
+  handleCheckboxChange(stepId, todoId) {
+    const newCheckboxList = [...this.state.steps];
+
+    newCheckboxList[stepId - 1].todos.forEach(todos => {
+      if (todos.id === todoId) todos.checked = !todos.checked;
+    });
+    this.setState({ steps: newCheckboxList });
+    console.log(this.state);
   }
 
   render() {
@@ -126,6 +138,7 @@ class App extends Component {
                 handleSubmit={this.handleSubmit}
                 deleteItem={this.deleteItem}
                 id={match.params.id}
+                handleCheckboxChange={this.handleCheckboxChange}
               />
             )}
           />

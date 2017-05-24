@@ -5,6 +5,8 @@ import {
   TodosButton,
   TodosForm,
   TodosFormRow,
+  TodosText,
+  TodosCheckbox,
 } from './base/TodoList.js';
 import { FormInput } from './base/Form';
 
@@ -17,6 +19,7 @@ function TodoList({
   handleChange,
   deleteItem,
   id,
+  handleCheckboxChange,
 }) {
   return (
     <div>
@@ -25,8 +28,14 @@ function TodoList({
         {todos.map(todo => {
           return (
             <TodosItem key={todo.id}>
-              <input type="checkbox" />
-              {todo.text}
+              <TodosCheckbox
+                type="checkbox"
+                checked={todo.checked}
+                onClick={() => {
+                  handleCheckboxChange(id, todo.id);
+                }}
+              />
+              <TodosText>{todo.text}</TodosText>
               <TodosButton
                 onClick={() => {
                   deleteItem(id, todo.id);
