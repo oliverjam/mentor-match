@@ -6,7 +6,7 @@ import PreferencePage from './pages/PreferencePage';
 import MatchPage from './pages/MatchPage';
 
 import Timeline from './Timeline';
-import TodoList from './TodoList';
+import TodoListPage from './pages/TodoListPage';
 
 class App extends Component {
   constructor(props) {
@@ -118,7 +118,7 @@ class App extends Component {
             exact
             path="/step-:id"
             render={({ match }) => (
-              <TodoList
+              <TodoListPage
                 title={this.state.steps[match.params.id - 1].title}
                 todos={this.state.steps[match.params.id - 1].todos}
                 inputValue={this.state.todoInputValue}

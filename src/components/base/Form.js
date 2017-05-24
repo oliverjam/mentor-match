@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { buttonStyle } from './utils/button';
 import { Link } from 'react-router-dom';
 export const Form = styled.form`
   display: flex;
@@ -45,26 +46,5 @@ export const TextArea = styled.textarea`
     resize: vertical;
   `;
 export const FormButton = styled.button`
-  padding: 0.5em 0.75em;
-  color: white;
-  background-color: palevioletred;
-  transition: background-color 0.2s;
-  cursor: pointer;
-  &:hover,
-  &:focus {
-    background-color: #d4547e;
-  }
-  &:focus {
-    outline: none;
-  }
+  ${buttonStyle()};
 `;
-
-// export const FormLink = styled(Link)`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   flex: 1;
-//   text-decoration: none;
-//   color: black;
-//   background: rgb(38, 235, 33);
-// `;
