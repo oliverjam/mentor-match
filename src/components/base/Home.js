@@ -12,4 +12,18 @@ export const HomeLink = styled(Link)`
   justify-content: center;
   align-items: center;
   flex: 1;
+  font-size: 2em;
+  color: white;
+  text-decoration: none;
+  background-color: palevioletred;
+  transition: background-color 0.2s;
+  &:hover {
+    background-color: #d4547e;
+  }
+  &:last-child {
+    background-color: skyblue;
+    &:hover {
+      background-color: #51b8e1;
+    }
+  }
   `;
