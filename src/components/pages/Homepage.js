@@ -1,11 +1,11 @@
 import React from 'react';
-import { HomeContainer, HomeLink } from './base/Home';
+import { HomeContainer, HomeLink } from '../base/Home';
 
 const Homepage = props => {
   return (
     <HomeContainer>
       <HomeLink to="/timeline">Mentor</HomeLink>
-      <HomeLink to="/developmentForm">Young Person</HomeLink>
+      <HomeLink to="/create-plan">Young Person</HomeLink>
     </HomeContainer>
   );
 };

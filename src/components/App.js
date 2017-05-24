@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-import Homepage from './Homepage';
-import DevelopmentForm from './DevelopmentForm';
-import ThankYouForm from './ThankYouForm';
+import Homepage from './pages/Homepage';
+import DevelopmentPage from './pages/DevelopmentPage';
+import PreferencePage from './pages/PreferencePage';
+import MatchPage from './pages/MatchPage';
 
 import Timeline from './Timeline';
 import TodoList from './TodoList';
@@ -14,7 +15,8 @@ class App extends Component {
       category: '',
       goal: '',
       time: 0,
-      submitted: false,
+      planSubmitted: false,
+      preferenceSubmitted: false,
       todoInputValue: '',
       steps: Array.from({ length: 4 }, (item, i) => {
         return {
@@ -36,7 +38,8 @@ class App extends Component {
 
   handleFormSubmit = ev => {
     ev.preventDefault();
-    this.setState({ submitted: true });
+    const name = ev.target.name;
+    this.setState({ [name]: true });
   };
 
   handleFormInputChange = ev => {
@@ -76,29 +79,35 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Route exact path="/" component={Homepage} />
           <Route
             exact
-            path="/developmentForm"
+            path="/"
             render={() =>
-              this.state.submitted
-                ? <Redirect to="/thankyou" />
-                : <DevelopmentForm
+              this.state.preferenceSubmitted
+                ? <Redirect to="/timeline" />
+                : <Homepage />}
+          />
+          <Route
+            exact
+            path="/create-plan"
+            render={() =>
+              this.state.planSubmitted
+                ? <Redirect to="/mentor-preference" />
+                : <DevelopmentPage
                     handleFormSubmit={this.handleFormSubmit}
                     handleFormInputChange={this.handleFormInputChange}
                   />}
           />
           <Route
             exact
-            path="/thankyou"
-            render={() => (
-              <ThankYouForm
-                category={this.state.category}
-                goal={this.state.goal}
-                time={this.state.time}
-              />
-            )}
+            path="/mentor-preference"
+            render={() =>
+              this.state.preferenceSubmitted
+                ? <Redirect to="/matching" />
+                : <PreferencePage handleFormSubmit={this.handleFormSubmit} />}
           />
+
+          <Route exact path="/matching" render={() => <MatchPage />} />
 
           <Route
             exact
