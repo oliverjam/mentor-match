@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { buttonStyle } from './utils/button';
-import { Link } from 'react-router-dom';
+import { inputStyle } from './utils/input';
+
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -15,15 +16,16 @@ export const Form = styled.form`
 export const FormSelectWrapper = styled.div`
   position: relative;
   &::after{
+    content: "";
     position: absolute;
     top: 50%;
-    right: 1.25rem;
+    right: 1.25em;
     display: inline-block;
-    content: "";
+    margin-top: -.15rem;
     width: 0;
     height: 0;
-    margin-top: -.15rem;
     pointer-events: none;
+    color: #777;
     border-top: .35rem solid;
     border-right: .35rem solid transparent;
     border-bottom: .35rem solid transparent;
@@ -32,6 +34,7 @@ export const FormSelectWrapper = styled.div`
 `;
 
 export const FormSelect = styled.select`
+  ${inputStyle()};
   color: #777;
   cursor: pointer;
   -webkit-appearance: none;
@@ -40,11 +43,13 @@ export const FormSelect = styled.select`
 `;
 
 export const FormInput = styled.input`
-  `;
+  ${inputStyle()};
+`;
 
 export const TextArea = styled.textarea`
-    resize: vertical;
-  `;
+  ${inputStyle()};
+  resize: vertical;
+`;
 export const FormButton = styled.button`
   ${buttonStyle()};
 `;

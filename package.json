@@ -9,11 +9,15 @@
     "styled-components": "^1.4.6"
   },
   "devDependencies": {
+    "npm-run-all": "^4.0.2",
     "react-scripts": "1.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "rename": "mv build/index.html build/200.html",
+    "surge": "surge ./build --domain mentor-match.surge.sh",
+    "deploy": "run-s build rename surge",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
