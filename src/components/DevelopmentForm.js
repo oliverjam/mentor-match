@@ -10,7 +10,7 @@ import {
 
 const DevelopmentForm = props => {
   return (
-    <Form onSubmit={props.handleFormSubmit}>
+    <Form onSubmit={props.handleFormSubmit} name="planSubmitted">
       <label htmlFor="formCategory">
         What category is your goal in?
       </label>
