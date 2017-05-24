@@ -33,3 +33,13 @@ export const TodosFormRow = styled.div`
       margin-left: 0.5em;
     }
   `;
+
+export const TodosText = styled.p`
+
+`;
+
+export const TodosCheckbox = styled.input`
+  & + p {
+     text-decoration: ${props => (props.checked ? 'line-through' : 'none')};
+    }
+`;
