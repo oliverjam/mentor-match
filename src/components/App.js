@@ -31,6 +31,7 @@ class App extends Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
   }
 
   handleFormSubmit = ev => {
@@ -59,6 +60,16 @@ class App extends Component {
   handleChange(e) {
     const todoInputValue = e.target.value;
     this.setState({ todoInputValue });
+  }
+
+  deleteItem(stepId, todoId) {
+    const deletedItemList = [...this.state.steps];
+    deletedItemList[stepId - 1].todos = deletedItemList[
+      stepId - 1
+    ].todos.filter(todos => {
+      return todos.id !== todoId;
+    });
+    this.setState({ steps: deletedItemList });
   }
 
   render() {
@@ -104,6 +115,7 @@ class App extends Component {
                 inputValue={this.state.todoInputValue}
                 handleChange={this.handleChange}
                 handleSubmit={this.handleSubmit}
+                deleteItem={this.deleteItem}
                 id={match.params.id}
               />
             )}
