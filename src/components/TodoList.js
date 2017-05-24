@@ -16,6 +16,7 @@ function TodoList({
   handleChange,
   deleteItem,
   id,
+  handleCheckboxChange,
 }) {
   return (
     <div>
@@ -24,6 +25,12 @@ function TodoList({
         {todos.map(todo => {
           return (
             <TodosItem key={todo.id}>
+              <input
+                type="checkbox"
+                onClick={() => {
+                  handleCheckboxChange(id, todo.id);
+                }}
+              />
               {todo.text}
               <TodosButton
                 onClick={() => {

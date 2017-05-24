@@ -13,6 +13,7 @@ const TodoListPage = props => {
         handleSubmit={props.handleSubmit}
         deleteItem={props.deleteItem}
         id={props.id}
+        handleCheckboxChange={props.handleCheckboxChange}
       />
     </MainContent>
   );
