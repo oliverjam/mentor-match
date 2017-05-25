@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { buttonStyle } from './utils/button';
 
 export const Todos = styled.ul`
   list-style-type: none;
@@ -21,8 +22,11 @@ export const TodosForm = styled.form`
   }
 `;
 
-export const TodosButton = styled.button`
-  ${/* ${buttonStyle()}; */ ''}
+export const TodosAdd = styled.button`
+  ${buttonStyle('secondary')};
+`;
+
+export const TodosDelete = styled.button`
   margin-left: auto;
 `;
 
@@ -34,7 +38,7 @@ export const TodosFormRow = styled.div`
   `;
 
 export const TodosText = styled.p`
-
+  margin-left: 1em;
 `;
 
 export const TodosCheckbox = styled.input`
