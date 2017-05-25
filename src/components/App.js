@@ -18,8 +18,9 @@ class App extends Component {
       preferenceSubmitted: false,
       todoInputValue: '',
       steps: [],
+      todos: [],
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleNewTodo = this.handleNewTodo.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
@@ -39,30 +40,31 @@ class App extends Component {
 
   handleSteps = () => {
     this.setState({
-      steps: Array.from({ length: parseInt(this.state.time) }, (item, i) => {
-        return {
-          id: i + 1,
-          title: `Step ${i + 1}`,
-          todos: [
-            {
-              id: i + 1,
-              text: `Todo ${i + 1}`,
-              checked: false,
-            },
-          ],
-        };
-      }),
+      steps: Array.from(
+        { length: parseInt(this.state.time, 10) },
+        (item, i) => {
+          return {
+            id: i + 1,
+            title: `Step ${i + 1}`,
+          };
+        }
+      ),
     });
   };
-  handleSubmit(e) {
+
+  handleNewTodo(e) {
     e.preventDefault();
-    const id = e.target.name - 1;
-    const newSteps = [...this.state.steps];
-    newSteps[id].todos = [
-      ...this.state.steps[id].todos,
-      { id: Date.now(), text: this.state.todoInputValue, checked: false },
+    const stepId = e.target.name - 1;
+    const todos = [
+      ...this.state.todos,
+      {
+        text: this.state.todoInputValue,
+        id: Date.now(),
+        stepId,
+        checked: false,
+      },
     ];
-    this.setState({ todoInputValue: '', steps: newSteps });
+    this.setState({ todoInputValue: '', todos });
   }
 
   handleChange(e) {
@@ -70,24 +72,18 @@ class App extends Component {
     this.setState({ todoInputValue });
   }
 
-  deleteItem(stepId, todoId) {
-    const deletedItemList = [...this.state.steps];
-    deletedItemList[stepId - 1].todos = deletedItemList[
-      stepId - 1
-    ].todos.filter(todos => {
-      return todos.id !== todoId;
-    });
-    this.setState({ steps: deletedItemList });
+  deleteItem(id) {
+    const todos = this.state.todos.filter(todo => todo.id !== id);
+    this.setState({ todos });
   }
 
-  handleCheckboxChange(stepId, todoId) {
-    const newCheckboxList = [...this.state.steps];
-
-    newCheckboxList[stepId - 1].todos.forEach(todos => {
-      if (todos.id === todoId) todos.checked = !todos.checked;
+  handleCheckboxChange(id) {
+    const todos = this.state.todos.map(todo => {
+      if (todo.id === id) todo.checked = !todo.checked;
+      return todo;
     });
-    this.setState({ steps: newCheckboxList });
-    console.log(this.state);
+
+    this.setState({ todos });
   }
 
   render() {
@@ -140,10 +136,14 @@ class App extends Component {
             render={({ match }) => (
               <TodoListPage
                 title={this.state.steps[match.params.id - 1].title}
-                todos={this.state.steps[match.params.id - 1].todos}
+                // Stupid hack to ensure it only tries to render when there are actually todos
+                todos={this.state.todos.filter(todo => {
+                  if (todo) return match.params.id - 1 === todo.stepId;
+                  return false;
+                })}
                 inputValue={this.state.todoInputValue}
                 handleChange={this.handleChange}
-                handleSubmit={this.handleSubmit}
+                handleNewTodo={this.handleNewTodo}
                 deleteItem={this.deleteItem}
                 id={match.params.id}
                 handleCheckboxChange={this.handleCheckboxChange}

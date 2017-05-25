@@ -3,8 +3,6 @@ import { MainContent } from './../base/MainContent';
 import TodoList from './../TodoList';
 
 const TodoListPage = props => {
-  console.log(props);
-
   return (
     <MainContent>
       <TodoList
@@ -12,7 +10,7 @@ const TodoListPage = props => {
         todos={props.todos}
         inputValue={props.inputValue}
         handleChange={props.handleChange}
-        handleSubmit={props.handleSubmit}
+        handleNewTodo={props.handleNewTodo}
         deleteItem={props.deleteItem}
         id={props.id}
         handleCheckboxChange={props.handleCheckboxChange}
