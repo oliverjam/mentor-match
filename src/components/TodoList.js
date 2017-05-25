@@ -65,6 +65,7 @@ function TodoList({
         <TodosFormRow>
           <FormInput
             required
+            name="todoInputValue"
             onChange={handleChange}
             id="addTodo"
             type="text"
