@@ -6,7 +6,7 @@ const TodoListPage = props => {
   return (
     <MainContent>
       <TodoList
-        title={props.title}
+        // title={props.title}
         todos={props.todos}
         inputValue={props.inputValue}
         handleChange={props.handleChange}
