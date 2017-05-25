@@ -1,10 +1,12 @@
 import React from 'react';
-import { MainContent } from './../base/MainContent';
+import { MainContent, MainTitle } from './../base/MainContent';
 import Timeline from '../Timeline';
 
-const TimelinePage = ({ steps }) => {
+const TimelinePage = ({ steps, title }) => {
   return (
     <MainContent>
+      <MainTitle>{title} Timeline</MainTitle>
+      <p>Tap a step to plan your journey in more detail</p>
       <Timeline steps={steps} />
     </MainContent>
   );

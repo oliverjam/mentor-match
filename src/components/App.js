@@ -123,7 +123,12 @@ class App extends Component {
           <Route
             exact
             path="/timeline"
-            render={() => <TimelinePage steps={this.state.steps} />}
+            render={() => (
+              <TimelinePage
+                steps={this.state.steps}
+                title={this.state.category}
+              />
+            )}
           />
           <Route
             exact
