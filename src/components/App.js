@@ -63,8 +63,6 @@ class App extends Component {
       { id: Date.now(), text: this.state.todoInputValue, checked: false },
     ];
     this.setState({ todoInputValue: '', steps: newSteps });
-    // Doesn't work? :(
-    // this.setState({todoInputValue: '', steps[0].todos: todos});
   }
 
   handleChange(e) {

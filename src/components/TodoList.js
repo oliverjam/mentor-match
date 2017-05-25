@@ -59,7 +59,7 @@ function TodoList({
           );
         })}
       </Todos>
-      <TodosForm onSubmit={handleSubmit} name={id}>
+      <TodosForm autoComplete="off" onSubmit={handleSubmit} name={id}>
         <label htmlFor="addTodo">Add todo</label>
         <TodosFormRow>
           <FormInput
