@@ -9,6 +9,9 @@ const DevelopmentPage = props => {
       <DevelopmentForm
         handleFormSubmit={props.handleFormSubmit}
         handleFormInputChange={props.handleFormInputChange}
+        category={props.category}
+        goal={props.goal}
+        time={props.time}
       />
     </MainContent>
   );

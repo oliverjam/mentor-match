@@ -9,6 +9,8 @@ const PreferencePage = props => {
       <PreferenceForm
         handleFormSubmit={props.handleFormSubmit}
         handleFormInputChange={props.handleFormInputChange}
+        gender={props.gender}
+        age={props.age}
       />
     </MainContent>
   );

@@ -12,10 +12,12 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      category: '',
+      category: 'programming',
       goal: '',
       time: 0,
       planSubmitted: false,
+      gender: 'no preference',
+      age: 'no preference',
       preferenceSubmitted: false,
       todoInputValue: '',
       steps: [],
@@ -47,6 +49,7 @@ class App extends Component {
       .then(keys => {
         return keys.map(key => {
           localforage.getItem(key).then(value => {
+            console.log('setting state');
             this.setState({ [key]: value });
           });
         });
@@ -139,6 +142,9 @@ class App extends Component {
                 : <DevelopmentPage
                     handleFormSubmit={this.handleFormSubmit}
                     handleFormInputChange={this.handleFormInputChange}
+                    category={this.state.category}
+                    goal={this.state.goal}
+                    time={this.state.time}
                   />}
           />
           <Route
@@ -147,7 +153,12 @@ class App extends Component {
             render={() =>
               this.state.preferenceSubmitted
                 ? <Redirect to="/matching" />
-                : <PreferencePage handleFormSubmit={this.handleFormSubmit} />}
+                : <PreferencePage
+                    handleFormSubmit={this.handleFormSubmit}
+                    handleFormInputChange={this.handleFormInputChange}
+                    gender={this.state.gender}
+                    age={this.state.age}
+                  />}
           />
 
           <Route exact path="/matching" component={MatchPage} />
