@@ -21,7 +21,6 @@ class App extends Component {
       todos: [],
     };
     this.handleNewTodo = this.handleNewTodo.bind(this);
-    this.handleChange = this.handleChange.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
   }
@@ -65,11 +64,6 @@ class App extends Component {
       },
     ];
     this.setState({ todoInputValue: '', todos });
-  }
-
-  handleChange(e) {
-    const todoInputValue = e.target.value;
-    this.setState({ todoInputValue });
   }
 
   deleteItem(id) {
@@ -142,7 +136,7 @@ class App extends Component {
                   return false;
                 })}
                 inputValue={this.state.todoInputValue}
-                handleChange={this.handleChange}
+                handleChange={this.handleFormInputChange}
                 handleNewTodo={this.handleNewTodo}
                 deleteItem={this.deleteItem}
                 id={match.params.id}
