@@ -10,8 +10,8 @@ import {
   TodosCheckbox,
 } from './base/TodoList.js';
 import { FormInput } from './base/Form';
-
 import { LinkButton } from './base/LinkButton';
+
 function TodoList({
   title,
   todos,
@@ -24,7 +24,7 @@ function TodoList({
 }) {
   return (
     <div>
-      <h1>{title}</h1>
+      {/* <h1>{title}</h1> */}
       <Todos>
         {todos.map(todo => {
           return (
