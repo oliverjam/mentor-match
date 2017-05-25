@@ -17,7 +17,29 @@ class App extends Component {
       planSubmitted: false,
       preferenceSubmitted: false,
       todoInputValue: '',
-      steps: Array.from({ length: 4 }, (item, i) => {
+      steps: [],
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
+    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
+  }
+
+  handleFormSubmit = ev => {
+    ev.preventDefault();
+    const name = ev.target.name;
+    this.setState({ [name]: true });
+    this.handleSteps();
+  };
+
+  handleFormInputChange = ev => {
+    const name = ev.target.name;
+    this.setState({ [name]: ev.target.value });
+  };
+
+  handleSteps = () => {
+    this.setState({
+      steps: Array.from({ length: parseInt(this.state.time) }, (item, i) => {
         return {
           id: i + 1,
           title: `Step ${i + 1}`,
@@ -30,24 +52,8 @@ class App extends Component {
           ],
         };
       }),
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.deleteItem = this.deleteItem.bind(this);
-    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
-  }
-
-  handleFormSubmit = ev => {
-    ev.preventDefault();
-    const name = ev.target.name;
-    this.setState({ [name]: true });
+    });
   };
-
-  handleFormInputChange = ev => {
-    const name = ev.target.name;
-    this.setState({ [name]: ev.target.value });
-  };
-
   handleSubmit(e) {
     e.preventDefault();
     const id = e.target.name - 1;
@@ -57,8 +63,6 @@ class App extends Component {
       { id: Date.now(), text: this.state.todoInputValue, checked: false },
     ];
     this.setState({ todoInputValue: '', steps: newSteps });
-    // Doesn't work? :(
-    // this.setState({todoInputValue: '', steps[0].todos: todos});
   }
 
   handleChange(e) {
@@ -118,7 +122,7 @@ class App extends Component {
                 : <PreferencePage handleFormSubmit={this.handleFormSubmit} />}
           />
 
-          <Route exact path="/matching" render={() => <MatchPage />} />
+          <Route exact path="/matching" component={MatchPage} />
 
           <Route
             exact

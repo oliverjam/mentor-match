@@ -3,12 +3,14 @@ import { MainContent } from './../base/MainContent';
 import TodoList from './../TodoList';
 
 const TodoListPage = props => {
+  console.log(props);
+
   return (
     <MainContent>
       <TodoList
         title={props.title}
         todos={props.todos}
-        inputValue={props.todoInputValue}
+        inputValue={props.inputValue}
         handleChange={props.handleChange}
         handleSubmit={props.handleSubmit}
         deleteItem={props.deleteItem}
