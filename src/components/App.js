@@ -4,8 +4,7 @@ import Homepage from './pages/Homepage';
 import DevelopmentPage from './pages/DevelopmentPage';
 import PreferencePage from './pages/PreferencePage';
 import MatchPage from './pages/MatchPage';
-
-import Timeline from './Timeline';
+import TimelinePage from './pages/TimelinePage';
 import TodoListPage from './pages/TodoListPage';
 
 class App extends Component {
@@ -124,7 +123,7 @@ class App extends Component {
           <Route
             exact
             path="/timeline"
-            render={() => <Timeline steps={this.state.steps} />}
+            render={() => <TimelinePage steps={this.state.steps} />}
           />
           <Route
             exact
