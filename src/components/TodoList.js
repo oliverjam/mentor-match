@@ -16,7 +16,7 @@ function TodoList({
   title,
   todos,
   inputValue,
-  handleSubmit,
+  handleNewTodo,
   handleChange,
   deleteItem,
   id,
@@ -32,14 +32,14 @@ function TodoList({
               <TodosCheckbox
                 type="checkbox"
                 checked={todo.checked}
-                onClick={() => {
-                  handleCheckboxChange(id, todo.id);
+                onChange={() => {
+                  handleCheckboxChange(todo.id);
                 }}
               />
               <TodosText>{todo.text}</TodosText>
               <TodosDelete
                 onClick={() => {
-                  deleteItem(id, todo.id);
+                  deleteItem(todo.id);
                 }}
               >
                 <svg
@@ -60,7 +60,7 @@ function TodoList({
           );
         })}
       </Todos>
-      <TodosForm autoComplete="off" onSubmit={handleSubmit} name={id}>
+      <TodosForm autoComplete="off" onSubmit={handleNewTodo} name={id}>
         <label htmlFor="addTodo">Add todo</label>
         <TodosFormRow>
           <FormInput
