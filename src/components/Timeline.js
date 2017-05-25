@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { TimelineList, TimelineItem, TimelineLink } from './base/Timeline';
 
 function Timeline({ steps }) {
+  console.log(steps);
   return (
     <TimelineList>
       {steps.map(step => {
