@@ -46,7 +46,7 @@ export const TimelineLink = styled(Link)`
   width: 40%;
   text-align: right;
   color: white;
-  background-color: palevioletred;
+  background-color: ${props => (props.position === 'right' ? 'skyblue' : 'palevioletred')};
   border-radius: 2px;
   float: ${props => (props.position === 'right' ? 'right' : 'none')};
   text-align: ${props => (props.position === 'right' ? 'left' : 'right')};
