@@ -45,6 +45,7 @@ class App extends Component {
   // }
 
   componentWillMount() {
+    localforage.setItem('todoInputValue', '');
     localforage
       .keys()
       .then(keys => {
@@ -67,6 +68,10 @@ class App extends Component {
     this.handleSteps();
 
     localforage.setItem(name, true);
+  };
+
+  clearTodoInput = () => {
+    this.setState({ todoInputValue: '' });
   };
 
   handleFormInputChange = ev => {
@@ -187,6 +192,7 @@ class App extends Component {
                 <TimelinePage
                   steps={this.state.steps}
                   title={this.state.category}
+                  clearTodoInput={this.clearTodoInput}
                 />
               )}
             />
