@@ -8,9 +8,15 @@ import {
   FormButton,
 } from './base/Form';
 
-const DevelopmentForm = props => {
+const DevelopmentForm = ({
+  category,
+  goal,
+  time,
+  handleFormSubmit,
+  handleFormInputChange,
+}) => {
   return (
-    <Form onSubmit={props.handleFormSubmit} name="planSubmitted">
+    <Form onSubmit={handleFormSubmit} name="planSubmitted">
       <label htmlFor="formCategory">
         What category is your goal in?
       </label>
@@ -18,7 +24,8 @@ const DevelopmentForm = props => {
         <FormSelect
           id="formCategory"
           name="category"
-          onChange={props.handleFormInputChange}
+          onChange={handleFormInputChange}
+          value={category}
           required
         >
           <option value="programming">Programming</option>
@@ -33,10 +40,11 @@ const DevelopmentForm = props => {
       </label>
       <FormInput
         id="formGoal"
-        onChange={props.handleFormInputChange}
+        onChange={handleFormInputChange}
         name="goal"
         required
         type="text"
+        value={goal}
         placeholder="Make a website about myself"
       />
       <label htmlFor="formDescription">
@@ -53,11 +61,12 @@ const DevelopmentForm = props => {
       </label>
       <FormInput
         id="formTime"
-        onChange={props.handleFormInputChange}
+        onChange={handleFormInputChange}
         name="time"
         required
         type="number"
         placeholder="4"
+        value={time}
       />
       <FormButton type="submit">Submit</FormButton>
     </Form>

@@ -1,9 +1,14 @@
 import React from 'react';
 import { Form, FormSelectWrapper, FormSelect, FormButton } from './base/Form';
 
-const PreferenceForm = props => {
+const PreferenceForm = ({
+  handleFormSubmit,
+  handleFormInputChange,
+  gender,
+  age,
+}) => {
   return (
-    <Form onSubmit={props.handleFormSubmit} name="preferenceSubmitted">
+    <Form onSubmit={handleFormSubmit} name="preferenceSubmitted">
       <label htmlFor="formCategory">
         Do you have a gender preference?
       </label>
@@ -11,7 +16,8 @@ const PreferenceForm = props => {
         <FormSelect
           id="formGender"
           name="gender"
-          onChange={props.handleFormInputChange}
+          onChange={handleFormInputChange}
+          value={gender}
           required
         >
           <option value="no preference">No preference</option>
@@ -26,7 +32,8 @@ const PreferenceForm = props => {
         <FormSelect
           id="formAge"
           name="age"
-          onChange={props.handleFormInputChange}
+          onChange={handleFormInputChange}
+          value={age}
           required
         >
           <option value="no preference">No preference</option>
