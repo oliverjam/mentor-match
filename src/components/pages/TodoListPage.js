@@ -12,6 +12,7 @@ const TodoListPage = props => {
         handleChange={props.handleChange}
         handleNewTodo={props.handleNewTodo}
         deleteItem={props.deleteItem}
+        handleStepTitle={props.handleStepTitle}
         id={props.id}
         handleCheckboxChange={props.handleCheckboxChange}
       />

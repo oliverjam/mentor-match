@@ -8,6 +8,8 @@ import {
   TodosFormRow,
   TodosText,
   TodosCheckbox,
+  TodosTitle,
+  TodosTitleInput,
 } from './base/TodoList.js';
 import { FormInput } from './base/Form';
 import { LinkButton } from './base/LinkButton';
@@ -21,10 +23,17 @@ function TodoList({
   deleteItem,
   id,
   handleCheckboxChange,
+  handleStepTitle,
 }) {
   return (
     <div>
-      <h1>{title}</h1>
+      <TodosTitle>
+        <TodosTitleInput
+          onChange={handleStepTitle.bind(this, id)}
+          value={title}
+          type="text"
+        />
+      </TodosTitle>
       <Todos>
         {todos.map(todo => {
           return (

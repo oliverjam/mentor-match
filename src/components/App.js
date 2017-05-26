@@ -92,6 +92,17 @@ class App extends Component {
     localforage.setItem('steps', steps);
   };
 
+  handleStepTitle = (id, ev) => {
+    console.log(id, ev.target.value);
+    const steps = [...this.state.steps].map(step => {
+      if (step.id === parseInt(id)) {
+        step.title = ev.target.value;
+      }
+      return step;
+    });
+    this.setState({ steps });
+  };
+
   handleNewTodo = e => {
     e.preventDefault();
     const stepId = e.target.name - 1;
@@ -196,6 +207,7 @@ class App extends Component {
                     return false;
                   })}
                   inputValue={this.state.todoInputValue}
+                  handleStepTitle={this.handleStepTitle}
                   handleChange={this.handleFormInputChange}
                   handleNewTodo={this.handleNewTodo}
                   deleteItem={this.deleteItem}
