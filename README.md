@@ -6,7 +6,7 @@ Mentors who are experienced in this field and can help them achieve this.
 Mentorista also provides the infrastructure in the form of an interactive timeline to assist
 the young person in visualising this goal with of smaller weekly milestones.
 
-![image](./public/assets/landing.jpeg)
+![image](https://cloud.githubusercontent.com/assets/19254810/26492788/f00647ca-420d-11e7-8888-8515a6af2dbd.jpeg)
 
 #### Problem:
 [The Anna Freud Centre](http://www.annafreud.org/) are suffering from two key issues with their current process of matching young people with mentors:
@@ -35,4 +35,4 @@ the young person in visualising this goal with of smaller weekly milestones.
 - Mentor Flow
 - Matching Functionality
 - Push Notifications for matches
-- Support for multiple goals and timelines 
+- Support for multiple goals and timelines
