@@ -7,6 +7,7 @@ import PreferencePage from './pages/PreferencePage';
 import MatchPage from './pages/MatchPage';
 import TimelinePage from './pages/TimelinePage';
 import TodoListPage from './pages/TodoListPage';
+import { LoadingContainer, LoadingSpinner } from './base/Loading';
 
 class App extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class App extends Component {
     this.state = {
       category: 'programming',
       goal: '',
-      time: 0,
+      time: null,
       planSubmitted: false,
       gender: 'no preference',
       age: 'no preference',
@@ -53,6 +54,9 @@ class App extends Component {
             this.setState({ [key]: value });
           });
         });
+      })
+      .then(() => {
+        this.setState({ loaded: true });
       })
       .catch(err => console.log(err));
   }
@@ -122,80 +126,84 @@ class App extends Component {
   };
 
   render() {
-    return (
-      <Router>
-        <div>
-          <Route
-            exact
-            path="/"
-            render={() =>
-              this.state.preferenceSubmitted
-                ? <Redirect to="/timeline" />
-                : <Homepage />}
-          />
-          <Route
-            exact
-            path="/create-plan"
-            render={() =>
-              this.state.planSubmitted
-                ? <Redirect to="/mentor-preference" />
-                : <DevelopmentPage
-                    handleFormSubmit={this.handleFormSubmit}
-                    handleFormInputChange={this.handleFormInputChange}
-                    category={this.state.category}
-                    goal={this.state.goal}
-                    time={this.state.time}
-                  />}
-          />
-          <Route
-            exact
-            path="/mentor-preference"
-            render={() =>
-              this.state.preferenceSubmitted
-                ? <Redirect to="/matching" />
-                : <PreferencePage
-                    handleFormSubmit={this.handleFormSubmit}
-                    handleFormInputChange={this.handleFormInputChange}
-                    gender={this.state.gender}
-                    age={this.state.age}
-                  />}
-          />
+    if (!this.state.loaded) {
+      return null;
+    } else {
+      return (
+        <Router>
+          <div>
+            <Route
+              exact
+              path="/"
+              render={() =>
+                this.state.preferenceSubmitted
+                  ? <Redirect to="/timeline" />
+                  : <Homepage />}
+            />
+            <Route
+              exact
+              path="/create-plan"
+              render={() =>
+                this.state.planSubmitted
+                  ? <Redirect to="/mentor-preference" />
+                  : <DevelopmentPage
+                      handleFormSubmit={this.handleFormSubmit}
+                      handleFormInputChange={this.handleFormInputChange}
+                      category={this.state.category}
+                      goal={this.state.goal}
+                      time={this.state.time}
+                    />}
+            />
+            <Route
+              exact
+              path="/mentor-preference"
+              render={() =>
+                this.state.preferenceSubmitted
+                  ? <Redirect to="/matching" />
+                  : <PreferencePage
+                      handleFormSubmit={this.handleFormSubmit}
+                      handleFormInputChange={this.handleFormInputChange}
+                      gender={this.state.gender}
+                      age={this.state.age}
+                    />}
+            />
 
-          <Route exact path="/matching" component={MatchPage} />
+            <Route exact path="/matching" component={MatchPage} />
 
-          <Route
-            exact
-            path="/timeline"
-            render={() => (
-              <TimelinePage
-                steps={this.state.steps}
-                title={this.state.category}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/step-:id"
-            render={({ match }) => (
-              <TodoListPage
-                // title={this.state.steps[match.params.id - 1].title}
-                // Stupid hack to ensure it only tries to render when there are actually todos
-                todos={this.state.todos.filter(todo => {
-                  if (todo) return match.params.id - 1 === todo.stepId;
-                  return false;
-                })}
-                inputValue={this.state.todoInputValue}
-                handleChange={this.handleFormInputChange}
-                handleNewTodo={this.handleNewTodo}
-                deleteItem={this.deleteItem}
-                id={match.params.id}
-                handleCheckboxChange={this.handleCheckboxChange}
-              />
-            )}
-          />
-        </div>
-      </Router>
-    );
+            <Route
+              exact
+              path="/timeline"
+              render={() => (
+                <TimelinePage
+                  steps={this.state.steps}
+                  title={this.state.category}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/step-:id"
+              render={({ match }) => (
+                <TodoListPage
+                  title={this.state.steps[match.params.id - 1].title}
+                  // Stupid hack to ensure it only tries to render when there are actually todos
+                  todos={this.state.todos.filter(todo => {
+                    if (todo) return match.params.id - 1 === todo.stepId;
+                    return false;
+                  })}
+                  inputValue={this.state.todoInputValue}
+                  handleChange={this.handleFormInputChange}
+                  handleNewTodo={this.handleNewTodo}
+                  deleteItem={this.deleteItem}
+                  id={match.params.id}
+                  handleCheckboxChange={this.handleCheckboxChange}
+                />
+              )}
+            />
+          </div>
+        </Router>
+      );
+    }
   }
 }
 
