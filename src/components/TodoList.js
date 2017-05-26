@@ -22,7 +22,6 @@ function TodoList({
   id,
   handleCheckboxChange,
 }) {
-  console.log(title);
   return (
     <div>
       <h1>{title}</h1>

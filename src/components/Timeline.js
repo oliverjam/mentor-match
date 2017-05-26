@@ -6,7 +6,7 @@ function Timeline({ steps }) {
     <TimelineList>
       {steps.map(step => {
         return (
-          <TimelineItem>
+          <TimelineItem key={step.id}>
             <TimelineLink
               position={step.id % 2 === 0 ? 'right' : 'left'}
               to={`/step-${step.id}`}

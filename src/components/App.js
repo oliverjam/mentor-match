@@ -7,7 +7,7 @@ import PreferencePage from './pages/PreferencePage';
 import MatchPage from './pages/MatchPage';
 import TimelinePage from './pages/TimelinePage';
 import TodoListPage from './pages/TodoListPage';
-import { LoadingContainer, LoadingSpinner } from './base/Loading';
+// import { LoadingContainer, LoadingSpinner } from './base/Loading';
 
 class App extends Component {
   constructor(props) {
@@ -44,21 +44,20 @@ class App extends Component {
   //     .catch(err => console.log(err));
   // }
 
-  componentDidMount() {
+  componentWillMount() {
     localforage
       .keys()
       .then(keys => {
         return keys.map(key => {
           localforage.getItem(key).then(value => {
-            console.log('setting state');
             this.setState({ [key]: value });
           });
         });
       })
       .then(() => {
         this.setState({ loaded: true });
-      })
-      .catch(err => console.log(err));
+      });
+    // .catch(err => console.log(err));
   }
 
   handleFormSubmit = ev => {
@@ -185,7 +184,12 @@ class App extends Component {
               path="/step-:id"
               render={({ match }) => (
                 <TodoListPage
-                  title={this.state.steps[match.params.id - 1].title}
+                  // Stupid hack to ensure it doesn't throw when there's no title
+                  title={
+                    this.state.steps[match.params.id - 1]
+                      ? this.state.steps[match.params.id - 1].title
+                      : ''
+                  }
                   // Stupid hack to ensure it only tries to render when there are actually todos
                   todos={this.state.todos.filter(todo => {
                     if (todo) return match.params.id - 1 === todo.stepId;
