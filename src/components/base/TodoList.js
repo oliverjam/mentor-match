@@ -22,6 +22,19 @@ export const TodosForm = styled.form`
   }
 `;
 
+export const TodosTitle = styled.div`
+  font-size: 2em;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+`;
+
+export const TodosTitleInput = styled.input`
+  
+`;
+
 export const TodosAdd = styled.button`
   ${buttonStyle('secondary')};
 `;
